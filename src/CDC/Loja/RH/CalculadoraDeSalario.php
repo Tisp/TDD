@@ -1,13 +1,16 @@
 <?php
-
 namespace CDC\Loja\RH;
 
-use CDC\Loja\RH\CalculoSalarioFuncionario;
+use CDC\Loja\RH\Cargo,
+    CDC\Loja\RH\Funcionario;
 
 class CalculadoraDeSalario
 {
-    public function calculaSalario(CalculoSalarioFuncionario $calculoSalarioFuncionario)
+    public function calculaSalario(Funcionario $funcionario)
     {
-        return $calculoSalarioFuncionario->calcula();
+        $cargo = new Cargo($funcionario->getCargo());
+        return $cargo->getRegra()->calcula($funcionario);
     }
 }
+
+?>
